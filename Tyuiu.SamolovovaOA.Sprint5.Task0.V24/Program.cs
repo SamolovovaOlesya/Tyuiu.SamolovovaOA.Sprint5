@@ -10,20 +10,20 @@ namespace Tyuiu.SamolovovaOA.Sprint5.Task0.V24
 
             DataService ds = new DataService();
 
-            Console.WriteLine("*************************************");
-            Console.WriteLine("* ИСХОДНЫЕ ДАННЫЕ                    *");
-            Console.WriteLine("*************************************");
+            Console.WriteLine("****************************************");
+            Console.WriteLine("* ИСХОДНЫЕ ДАННЫЕ                       *");
+            Console.WriteLine("****************************************");
             Console.WriteLine("x = " + x);
             Console.WriteLine();
 
-            Console.WriteLine("*************************************");
-            Console.WriteLine("* РЕЗУЛЬТАТ                          *");
-            Console.WriteLine("*************************************");
+            Console.WriteLine("****************************************");
+            Console.WriteLine("* РЕЗУЛЬТАТ                             *");
+            Console.WriteLine("****************************************");
 
-            string res = ds.SaveToFileTextData(x);
-
-            Console.WriteLine("Файл: " + res);
+            string resultPath = ds.SaveToFileTextData(x);
+            Console.WriteLine("Файл: " + resultPath);
             Console.WriteLine("создан!");
+
             Console.ReadKey();
         }
     }

@@ -12,8 +12,8 @@ namespace Tyuiu.SamolovovaOA.Sprint5.Task0.V24.Test
 
             string path = ds.SaveToFileTextData(3);
 
-            FileInfo fileInfo = new FileInfo(path);
-            bool fileExists = fileInfo.Exists;
+            FileInfo fi = new FileInfo(path);
+            bool fileExists = fi.Exists;
             bool wait = true;
 
             Assert.AreEqual(wait, fileExists);

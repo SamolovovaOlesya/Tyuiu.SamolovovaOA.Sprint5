@@ -31,7 +31,7 @@ namespace Tyuiu.SamolovovaOA.Sprint5.Task7.V27.Lib
 
             return savePath;
         }
-
+         
         // Функция, которая УДАЛЯЕТ ВСЕ ПРОБЕЛЫ ПОЛНОСТЬЮ
         private string RemoveAllSpaces(string line)
         {

@@ -7,7 +7,10 @@ namespace Tyuiu.SamolovovaOA.Sprint5.Task7.V27.Lib
         public string LoadDataAndSave(string path)
         {
 
-            string pathSaveFile = $@"{Directory.GetCurrentDirectory()}\OutPutDataFileTask7V27.txt";
+            string pathSaveFile = Path.Combine(
+               Path.GetTempPath(),
+               "OutPutDataFileTask7V27.txt"
+           );
 
             FileInfo fileInfo = new FileInfo(pathSaveFile);
             bool fileExists = fileInfo.Exists;
@@ -26,7 +29,7 @@ namespace Tyuiu.SamolovovaOA.Sprint5.Task7.V27.Lib
                 while ((line = reader.ReadLine()) != null)
                 {
                     strLine = "";
-                    bool prevSpace = false;   
+                    bool prevSpace = false;
 
                     for (int i = 0; i < line.Length; i++)
                     {

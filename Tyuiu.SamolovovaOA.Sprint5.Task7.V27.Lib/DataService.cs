@@ -6,52 +6,46 @@ namespace Tyuiu.SamolovovaOA.Sprint5.Task7.V27.Lib
     {
         public string LoadDataAndSave(string path)
         {
-            string tempDir = Path.GetTempPath();
-            string pathSaveFile = Path.Combine(tempDir, "OutPutDataFileTask7V27.txt");
+            string fileName = "OutPutDataFileTask7V27.txt";
 
-            // 2. Если такой файл уже есть в temp – удаляем
-            if (File.Exists(pathSaveFile))
+            // создаём файл в Temp – там тесты ИМЕЮТ ПРАВО писать
+            string savePath = Path.Combine(Path.GetTempPath(), fileName);
+
+            if (File.Exists(savePath))
             {
-                File.Delete(pathSaveFile);
+                File.Delete(savePath);
             }
 
-            // 3. Читаем входной файл и убираем лишние пробелы (оставляем только по одному)
             using (StreamReader reader = new StreamReader(path))
             {
-                string line;
+                string? line;
 
                 while ((line = reader.ReadLine()) != null)
                 {
-                    string strLine = "";
-                    bool prevSpace = false;
+                    // УДАЛЯЕМ ВСЕ ПРОБЕЛЫ
+                    string cleaned = RemoveAllSpaces(line);
 
-                    for (int i = 0; i < line.Length; i++)
-                    {
-                        char ch = line[i];
-
-                        if (ch == ' ')
-                        {
-                            if (!prevSpace)
-                            {
-                                // первый пробел оставляем
-                                strLine += ch;
-                                prevSpace = true;
-                            }
-                            // второй, третий и т.д. просто пропускаем
-                        }
-                        else
-                        {
-                            strLine += ch;
-                            prevSpace = false;
-                        }
-                    }
-
-                    File.AppendAllText(pathSaveFile, strLine + Environment.NewLine);
+                    File.AppendAllText(savePath, cleaned + Environment.NewLine);
                 }
             }
 
-            // 4. По шаблону: метод возвращает путь к выходному файлу
-            return pathSaveFile;
+            return savePath;
+        }
+
+        // Функция, которая УДАЛЯЕТ ВСЕ ПРОБЕЛЫ ПОЛНОСТЬЮ
+        private string RemoveAllSpaces(string line)
+        {
+            string result = "";
+
+            foreach (char ch in line)
+            {
+                if (ch != ' ')
+                {
+                    result += ch;
+                }
+            }
+
+            return result;
         }
     }
 }

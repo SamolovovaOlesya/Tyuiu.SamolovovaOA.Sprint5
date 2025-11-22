@@ -10,7 +10,7 @@ namespace Tyuiu.SamolovovaOA.Sprint5.Task7.V27.Lib
 
             // создаём файл в Temp – там тесты ИМЕЮТ ПРАВО писать
             string savePath = Path.Combine(Path.GetTempPath(), fileName);
-
+             
             if (File.Exists(savePath))
             {
                 File.Delete(savePath);

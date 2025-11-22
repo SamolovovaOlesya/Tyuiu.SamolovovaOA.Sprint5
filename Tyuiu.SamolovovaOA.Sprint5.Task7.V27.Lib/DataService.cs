@@ -6,29 +6,23 @@ namespace Tyuiu.SamolovovaOA.Sprint5.Task7.V27.Lib
     {
         public string LoadDataAndSave(string path)
         {
-            // 1. Папка, где лежит входной файл
-            string dir = Path.GetDirectoryName(path);
+            string tempDir = Path.GetTempPath();
+            string pathSaveFile = Path.Combine(tempDir, "OutPutDataFileTask7V27.txt");
 
-            // 2. Полный путь к выходному файлу в той же папке
-            string pathSaveFile = Path.Combine(dir, "OutPutDataFileTask7V27.txt");
-
-            // 3. Если такой файл уже есть – удаляем
-            FileInfo fileInfo = new FileInfo(pathSaveFile);
-            if (fileInfo.Exists)
+            // 2. Если такой файл уже есть в temp – удаляем
+            if (File.Exists(pathSaveFile))
             {
                 File.Delete(pathSaveFile);
             }
 
-            string strLine = "";
-
+            // 3. Читаем входной файл и убираем лишние пробелы (оставляем только по одному)
             using (StreamReader reader = new StreamReader(path))
             {
                 string line;
 
-                // читаем файл построчно
                 while ((line = reader.ReadLine()) != null)
                 {
-                    strLine = "";
+                    string strLine = "";
                     bool prevSpace = false;
 
                     for (int i = 0; i < line.Length; i++)
@@ -39,9 +33,11 @@ namespace Tyuiu.SamolovovaOA.Sprint5.Task7.V27.Lib
                         {
                             if (!prevSpace)
                             {
+                                // первый пробел оставляем
                                 strLine += ch;
                                 prevSpace = true;
                             }
+                            // второй, третий и т.д. просто пропускаем
                         }
                         else
                         {
@@ -54,7 +50,7 @@ namespace Tyuiu.SamolovovaOA.Sprint5.Task7.V27.Lib
                 }
             }
 
-            // 4. По шаблону: возвращаем путь к выходному файлу
+            // 4. По шаблону: метод возвращает путь к выходному файлу
             return pathSaveFile;
         }
     }

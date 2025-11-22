@@ -8,7 +8,7 @@ namespace Tyuiu.SamolovovaOA.Sprint5.Task7.V27.Test
         [TestMethod]
         public void CheckedExistsFile()
         {
-            string path = @"C:\Users\SamOl\source\repos\Tyuiu.SamolovovaOA.Sprint5\Tyuiu.SamolovovaOA.Sprint5.Task7.V27\bin\Debug\net8.0\OutPutDataFileTask7V27.txt";
+            string path = @"C:\Users\SamOl\AppData\Local\Temp\OutPutDataFileTask7V27.txt";
 
             FileInfo fileInfo = new FileInfo(path);
             bool fileExists = fileInfo.Exists;

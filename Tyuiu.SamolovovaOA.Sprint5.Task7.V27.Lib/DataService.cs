@@ -28,25 +28,15 @@ namespace Tyuiu.SamolovovaOA.Sprint5.Task7.V27.Lib
 
                 while ((line = reader.ReadLine()) != null)
                 {
-                    strLine = "";
-                    bool prevSpace = false;
+                    string resultLine = "";
 
                     for (int i = 0; i < line.Length; i++)
                     {
                         char ch = line[i];
 
-                        if (ch == ' ')
+                        if (ch != ' ')
                         {
-                            if (!prevSpace)
-                            {
-                                strLine += ch;
-                                prevSpace = true;
-                            }
-                        }
-                        else
-                        {
-                            strLine += ch;
-                            prevSpace = false;
+                            resultLine += ch;
                         }
                     }
 
